@@ -1,0 +1,48 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+<br>
+<div class="col-md">
+    <h1>Customers</h1>
+    <hr>
+    <div class="card card-body">
+        <a style="font-size: 20px;" class="btn btn-sm btn-info" href="{% url 'addcustomer' %}">Add Customer+</a>
+        <br><br>
+        <div class="p-1 mb-2 bg-success text-white text-center rounded"><h3>Search Here</h3></div>
+        <br><br>
+        <form method="get">
+            {{myFilter.form}} 
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form> 
+        <br><br>
+        <table class="table table-sm table-hover text-center" >
+            <thead class="thead-dark">
+                <tr style="font-size: 20px;">
+                    <th>Sr No.</th>
+                    <th>Name</th>
+                    <th>Phone No.</th>
+                    <th>Email</th>
+                    <th>Profile</th>
+                    <th>Order</th>
+                </tr>
+            </thead>
+        
+            {% for customer in customers %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{customer.name}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.email}}</td>
+                <td><a class="btn btn-sm btn-warning" href="{% url 'customerprofile' customer.id %}">View Profile</a></td>
+                <td><a class="btn btn-sm btn-success" href="{% url 'order' customer.id %}">Make Order</a></td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}

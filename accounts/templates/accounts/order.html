@@ -1,0 +1,59 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+
+<div class="boxed"><h2 style="text-align:center">Orders</h2></div>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<a style="font-size: 20px;" class="btn btn-success  btn-sm btn-block" href="{% url 'add_order' cus_id=cus_id %}">Add Order</a>
+			<hr><br>
+			{% if order|length %}
+			<table class="table table-sm table-hover text-center">
+				<thead class="thead-dark">
+					<tr style="font-size: 20px;">
+						<th>Sr.no</th>
+						<th>Name of the Item</th>
+						<th>Quantity</th>
+						<th>Price(in &#x20b9;)</th>
+						<th>Update</th>
+						<th>Remove</th>
+					</tr>
+				</thead>
+					{% for i,j in order %}
+				  <tr>
+					<td>{{ forloop.counter }}</td>
+                    <td>{{i.product}}</td>   
+					<td>{{i.quantity}}</td>
+					<td>{{j}}</td>  
+					<td><a class="btn btn-sm btn-warning" href="{% url 'update_order' order_id=i.id cus_id=cus_id %}">Update</a></td>
+                	<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order_id=i.id cus_id=cus_id %}">Delete</a></td> 
+				  </tr>
+				{% endfor %}
+			</table>
+			<br>
+			<table class="table table-sm table-hover text-center">
+				<thead class="thead-dark">
+					<tr style="font-size: 20px;">
+						<th colspan="3">Total Amount</th>
+						<th colspan="3">&#x20b9;{{price}}</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+			</table>
+			<div style="text-align:center;">
+				<a class="btn btn-sm btn-info" href="{% url 'invoice' day=day month=month year=year cus_id=cus_id %}">Get
+					Invoice</a>
+			</div>
+			{% else %}
+			<h3>No Orders Placed Yet</h3>
+			{% endif %}
+		 </div>
+	 </div>
+ </div>
+ <br>
+ <div style="text-align:center;">
+	 <a class="btn btn-sm btn-info" href="{% url 'customerprofile' pk=cus_id %}">Back</a>
+ </div>
+{% endblock %}

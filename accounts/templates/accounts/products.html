@@ -1,0 +1,49 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+<br>
+<div class="col-md">
+    <h1>Products</h1>
+    <hr>
+    <div class="card card-body">
+        <a style="font-size: 20px;" class="btn btn-sm btn-info" href="{% url 'addproduct' %}">Add Product+</a>
+        <br><br>
+        <div class="p-1 mb-2 bg-success text-white text-center rounded"><h3>Search Here</h3></div>
+        <br><br>
+        <form method="get">
+            {{myFilter.form}} 
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <br><br>
+        
+        <table class="table table-sm table-hover text-center">
+            <thead class="thead-dark">
+                <tr style="font-size: 20px;">
+                    <th>Sr No.</th>
+                    <th>Product</th>
+                    <th>Price(in &#x20b9;)</th>
+                    <th>Category</th>
+                    <th>Update</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+        
+            {% for product in products %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.category}}</td>
+                <td><a class="btn btn-sm btn-warning" href="{% url 'updateproducts' product.id %}">Update</a></td>
+                <td><a class="btn btn-sm btn-danger" href="{% url 'deleteproducts' product.id %}">Delete</a></td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}

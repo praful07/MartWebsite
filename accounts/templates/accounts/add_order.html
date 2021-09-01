@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   
+ </head>
+ <body>
+   <form action="{% url 'save_order' cus_id=cus_id %}" method="post">{% csrf_token %}
+      {{form}}
+      <div class="p-t-15">
+        <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+      </div>
+   </form>
+ </body>
+</html>

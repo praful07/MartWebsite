@@ -1,0 +1,70 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+<style>
+    th{
+        font-size: 20px;
+    }
+</style>
+<br><br>
+<div class="card card-body">
+
+  <div class="card card-body table-hover">
+    
+    <form action="" method="POST">
+      <table class="table">
+        <tr>
+          <th scope="col">Name</th>
+          <td>{{customer.name}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Phone</th>
+          <td>{{customer.phone}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Email</th>
+          <td>{{customer.email}}</td>
+        </tr>
+        <tr>
+          <th scope="col">Address</th>
+          <td rowspan="2">{{customer.address}}</td>
+        </tr>
+      </table>
+    <br>
+    <a class="btn btn-sm btn-success" href="{% url 'order' customer.id %}">Make Order</a>
+    <a class="btn btn-sm btn-warning" href="{% url 'updatecustomerprofile' customer.id %}">Update</a>
+  </form>
+</div>
+<br>
+<div class="boxed"><h2 style="text-align:center">All Orders</h2></div>
+<br>
+<div class="row">
+  <div class="col-md">
+    <div class="card card-body">
+      {% if dates|length %}
+      <table class="table table-sm table-hover text-center">
+        <thead class="thead-dark">
+          <tr style="font-size: 20px;">
+            <th>Sr No.</th>
+            <th>Date</th>
+            <th>Orders</th>
+          </tr>
+        </thead>
+        {% for i,j,k in dates %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{i}}-{{j}}-{{k}}</td>
+          <td><a class="btn btn-sm btn-success" href="{% url 'orders_by_date' day=i month=j year=k cus_id=customer.id %}">View Orders</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <h3>No Orders Placed yet</h3>
+      {% endif %}
+		</div>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+

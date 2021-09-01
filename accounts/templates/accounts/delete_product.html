@@ -1,0 +1,16 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+<br><br>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form}}
+    <br><br>
+    <h3>Do you really want to delete this item?</h3>
+    <br>
+    <a class="btn btn-sm btn-success" href="{% url 'products' %}">No</a>
+    <input class="btn btn-sm btn-danger" type="submit" name='Submit' value="Yes">
+    
+</form>
+
+{% endblock %}

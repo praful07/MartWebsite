@@ -1,0 +1,45 @@
+{% extends 'accounts/main.html' %}
+
+{% block content %}
+<div class="boxed">
+	<h2 style="text-align:center">Orders</h2>
+</div>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm table-hover text-center">
+				<thead class="thead-dark">
+					<tr style="font-size: 20px;">
+						<th>Sr.no</th>
+						<th>Name of the Item</th>
+						<th>Quantity</th>
+						<th>Price(in &#x20b9;)</th>
+					</tr>
+				</thead>
+				{% for i,j in order %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{i.product}}</td>
+					<td>{{i.quantity}}</td>
+					<td>{{j}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<br>
+			<table class="table table-sm table-hover text-center">
+				<thead class="thead-dark">
+					<tr style="font-size: 20px;">
+						<th colspan="3">Total Amount</th>
+						<th colspan="3">&#x20b9; {{price}}</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+<br>
+<div style="text-align:center;">
+	<a class="btn btn-sm btn-info" href="{% url 'invoice' day=day month=month year=year cus_id=cus_id %}">Get
+		Invoice</a>
+</div>
+{% endblock %}

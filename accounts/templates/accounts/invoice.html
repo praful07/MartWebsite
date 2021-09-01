@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Smart Mart Invoice</title>
+	<style>
+		.clearfix:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		a {
+			text-decoration: underline;
+		}
+
+		body {
+			position: relative;
+			margin: 0 auto;
+			color: #001028;
+			background: #FFFFFF;
+			font-family: Arial, sans-serif;
+			font-size: 14px;
+			font-family: Arial;
+		}
+
+		header {
+			padding: 10px 0;
+			margin-bottom: 30px;
+		}
+
+		#logo {
+			text-align: center;
+			margin-bottom: 10px;
+		}
+
+		#logo img {
+			width: 90px;
+		}
+
+		h1 {
+
+			color: #5D6975;
+			font-size: 2.4em;
+			line-height: 1.4em;
+			font-weight: normal;
+			text-align: center;
+			margin: 0 0 20px 0;
+		}
+
+		#project {
+			float: left;
+		}
+
+		#project span {
+			color: #5D6975;
+			text-align: right;
+			width: 52px;
+			margin-right: 10px;
+			display: inline-block;
+			font-size: 14px;
+		}
+
+		#company {
+			float: right;
+			text-align: right;
+		}
+
+		#project div,
+		#company div {
+			white-space: nowrap;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			border-spacing: 0;
+			margin-bottom: 20px;
+			padding: 5px;
+		}
+
+		table th,
+		table td {
+			text-align: center;
+		}
+
+		table th {
+			color: #5D6975;
+			border-bottom: 1px solid #C1CED9;
+			white-space: nowrap;
+			font-weight: normal;
+		}
+
+		table .service,
+		table .desc {
+			text-align: left;
+		}
+
+		table td {
+			padding-top: 5px;
+			padding-bottom: 5px;
+
+		}
+
+		table tr {
+			border-bottom: 1px solid #C1CED9;
+		}
+
+		table td.service,
+		table td.desc {
+			vertical-align: top;
+		}
+
+		table td.unit,
+		table td.qty,
+		table td.total {
+			font-size: 1.2em;
+		}
+
+		table td.grand {
+			border-top: 1px solid #5D6975;
+			;
+		}
+
+		#notices .notice {
+			color: #5D6975;
+			font-size: 1.2em;
+		}
+
+		footer {
+			color: #5D6975;
+			width: 100%;
+			height: 30px;
+			position: absolute;
+			bottom: 0;
+			border-top: 1px solid #C1CED9;
+			padding: 8px 0;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<body>
+	<header class="clearfix">
+		<div id="logo" style="display:flex; justify-content:center; align-items:center;">
+			<img src="D:\Web Dev\Django\mini\accounts\static\images\logo.jpg" class="brand-logo" width=200 height=100>
+			<h1 class="brand-name">Smart Mart</h1>
+		</div>
+		<h1>INVOICE</h1>
+		<br>
+		<div id="company" class="clearfix">
+			<div>Smart Mart</div>
+			<div><span>EMAIL : </span><a href="mailto:smartmart@example.com">smartmart@example.com</a></div>
+			<div><span>Contact No. : </span>+91-8654791234</div>
+		</div>
+		<br>
+		<div id="project">
+			<div><span>CLIENT :</span> {{customer.name}}</div>
+			<div><span>EMAIL : </span>{{customer.email}}</div>
+			<div><span>Contact No. : </span>{{customer.phone}}</div>
+			<div><span>Address : </span>{{customer.address}}</div>
+			<div><span>DATE : </span> {{day}}-{{month}}-{{year}}</div>
+		</div>
+		<br>
+		<br>
+	</header>
+	<br>
+	<br>
+	<table style="border: 2px solid black;">
+		<thead class="thead-dark">
+			<tr style="font-size: 20px;">
+				<th>Sr.no</th>
+				<th>Name of the Item</th>
+				<th>Quantity</th>
+				<th>Price(in Rs.)</th>
+			</tr>
+		</thead>
+		{% for i,j in order %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>{{i.product}}</td>
+			<td>{{i.quantity}}</td>
+			<td>{{j}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<table>
+		<thead>
+			<tr style="font-size: 20px;">
+				<th colspan="3">Total Amount</th>
+				<th colspan="3">Rs.{{price}}</th>
+			</tr>
+		</thead>
+	</table>
+</body>
+
+</html>
