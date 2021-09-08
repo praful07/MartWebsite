@@ -25,7 +25,7 @@ SECRET_KEY = 'oln%)+x1t33mox!-rdk&wkz+o1y+%-$_#c17p3&&)22=z7^w+8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','martwebhosting.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','martmanagement.herokuapp.com']
 
 
 # Application definition
